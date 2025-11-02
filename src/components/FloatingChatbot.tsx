@@ -14,7 +14,7 @@ interface Message {
   content: string;
 }
 
-type ChatMode = "motivational" | "casual" | "professional" | "friendly";
+type ChatMode = "motivational" | "casual" | "professional";
 
 const FloatingChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,8 +44,7 @@ const FloatingChatbot = () => {
           const greetings = {
             motivational: `Hey there, ${name}! 👋 I'm your AI Buddy, here to keep you motivated and help you crush those habits! What's on your mind?`,
             casual: `Hey ${name}! 😊 What's up? Ready to chat about whatever's on your mind?`,
-            professional: `Hello ${name}. I'm here to provide structured guidance on your goals and habits. How can I assist you today?`,
-            friendly: `Hi ${name}! 🌟 Great to see you! I'm here to chat and help you with your habits. What would you like to talk about?`
+            professional: `Hello ${name}. I'm here to provide structured guidance on your goals and habits. How can I assist you today?`
           };
           
           setMessages([{
@@ -78,8 +77,6 @@ const FloatingChatbot = () => {
         return namePrefix + "You are a casual, friendly AI buddy who chats naturally like a good friend. Be relaxed, conversational, and easy-going. Use simple language, occasional emojis, and keep things laid-back while still being helpful. No pressure, just chill vibes.";
       case "professional":
         return namePrefix + "You are a professional life coach providing thoughtful, structured advice on building habits and achieving goals. Be clear, analytical, and focus on actionable strategies and frameworks. Keep responses organized and strategic.";
-      case "friendly":
-        return namePrefix + "You are a warm, supportive friend who genuinely cares about the user's well-being. Be kind, encouraging, and positive. Use emojis moderately, show empathy, and make conversations feel comfortable and supportive.";
     }
   };
 
@@ -244,14 +241,6 @@ const FloatingChatbot = () => {
                   className="text-xs"
                 >
                   👔 Professional
-                </Button>
-                <Button
-                  variant={mode === "friendly" ? "default" : "outline"}
-                  onClick={() => handleModeChange("friendly")}
-                  size="sm"
-                  className="text-xs"
-                >
-                  🌟 Friendly
                 </Button>
               </div>
             </div>

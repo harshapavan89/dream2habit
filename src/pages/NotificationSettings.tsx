@@ -181,9 +181,6 @@ export default function NotificationSettings() {
                     <SelectItem value="professional">
                       💼 Professional - Straightforward and constructive
                     </SelectItem>
-                    <SelectItem value="friendly">
-                      🤝 Friendly - Warm and supportive
-                    </SelectItem>
                   </SelectContent>
                 </Select>
                 <p className="text-sm text-muted-foreground">
