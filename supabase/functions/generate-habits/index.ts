@@ -44,7 +44,7 @@ serve(async (req) => {
           },
           {
             role: 'user',
-            content: `My dream is: ${dream}. ${timelineContext ? `I have ${dailyHours} hours daily on ${availableDays.join(', ')} to work toward this over ${targetMonths} months.` : ''} Generate 5 actionable daily habits with emojis that fit my schedule. Format each as: "emoji description (estimated time)". Make them progressive and achievable.`
+            content: `My dream is: ${dream}. ${timelineContext ? `I have ${dailyHours} hours daily on ${availableDays.join(', ')} to work toward this over ${targetMonths} months.` : ''} Generate 5 unique and varied daily tasks with emojis that fit my schedule. Format each as: "emoji description (estimated time)". Make them different each day, progressive and achievable. Vary the tasks to keep them fresh and engaging. Today's date: ${new Date().toISOString().split('T')[0]}`
           }
         ],
         tools: [

@@ -41,7 +41,7 @@ serve(async (req) => {
           },
           {
             role: 'user',
-            content: `Generate 3 multiple-choice quiz questions for this task: "${taskTitle}". Each question should test understanding of the topic. Return ONLY a valid JSON array.`
+            content: `Generate 2-5 multiple-choice quiz questions for this task: "${taskTitle}". Each question should test understanding of the topic. Vary the number of questions based on task complexity.`
           }
         ],
         tools: [
@@ -74,8 +74,8 @@ serve(async (req) => {
                       required: ["question", "options", "correct_answer"],
                       additionalProperties: false
                     },
-                    minItems: 3,
-                    maxItems: 3
+                    minItems: 2,
+                    maxItems: 5
                   }
                 },
                 required: ["questions"],
