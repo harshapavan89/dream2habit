@@ -100,7 +100,34 @@ const Marketplace = () => {
           task_type: quizIndices.has(index) ? 'quiz' : 'proof'
         }));
 
-        await supabase.from("daily_tasks").insert(tasksToInsert);
+        const { data: insertedTasks, error: insertError } = await supabase
+          .from("daily_tasks")
+          .insert(tasksToInsert)
+          .select();
+
+        if (insertError) throw insertError;
+
+        // Generate quiz questions for quiz-type tasks
+        if (insertedTasks) {
+          for (const task of insertedTasks) {
+            if (task.task_type === 'quiz') {
+              try {
+                const { data: quizData, error: quizError } = await supabase.functions.invoke('generate-quiz', {
+                  body: { taskTitle: task.title }
+                });
+
+                if (!quizError && quizData?.questions) {
+                  await supabase
+                    .from('daily_tasks')
+                    .update({ quiz_questions: quizData.questions })
+                    .eq('id', task.id);
+                }
+              } catch (error) {
+                console.error('Failed to generate quiz for task:', task.title, error);
+              }
+            }
+          }
+        }
       }
 
       // Insert resources
